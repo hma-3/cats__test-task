@@ -67,8 +67,8 @@ export default {
         return;
       }
 
-      this.$store.dispatch("login", this.username);
-      this.$router.push("/facts");
+      localStorage.setItem("username", this.username);
+      this.$router.push({ name: "facts" });
     },
   },
 };

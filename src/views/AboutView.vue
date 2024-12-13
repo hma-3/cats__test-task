@@ -29,7 +29,7 @@
   </main>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .about-page {
   &__title {
     grid-column: 1 / -1;

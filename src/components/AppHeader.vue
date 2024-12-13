@@ -17,7 +17,7 @@ export default {
   components: { AvatarButton },
   computed: {
     isAuthorized() {
-      return this.$store.getters.checkAuth;
+      return localStorage.getItem("username") !== null;
     },
   },
 };

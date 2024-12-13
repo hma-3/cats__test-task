@@ -222,7 +222,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @use "@/assets/styles/mixins.scss" as *;
 
 .facts-page {

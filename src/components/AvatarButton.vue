@@ -22,7 +22,7 @@ export default {
   data() {
     return {
       isOpen: false,
-      username: this.$store.getters.getUsername,
+      username: localStorage.getItem("username") || "",
     };
   },
 
@@ -40,8 +40,8 @@ export default {
     },
 
     logout() {
-      this.$store.dispatch("logout");
-      this.$router.push("/login");
+      localStorage.removeItem("username");
+      this.$router.push({ name: "login" });
       this.isOpen = false;
     },
 
@@ -54,7 +54,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @use "@/assets/styles/mixins.scss" as *;
 
 .avatar {

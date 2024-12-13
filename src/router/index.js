@@ -2,11 +2,17 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import store from "../stores/store";
 
+import LoginView from "../views/LoginView.vue";
+import FactsView from "../views/FactsView.vue";
+import FactView from "../views/FactView.vue";
+import AboutView from "../views/AboutView.vue";
+import BlogView from "../views/BlogView.vue";
+
 Vue.use(VueRouter);
 
 const router = new VueRouter({
   mode: "hash",
-  base: import.meta.env.BASE_URL || "/",
+  base: import.meta.env.BASE_URL,
   routes: [
     {
       path: "/",
@@ -15,9 +21,9 @@ const router = new VueRouter({
     {
       path: "/login",
       name: "login",
-      component: () => import("../views/LoginView.vue"),
+      component: LoginView,
       beforeEnter: (to, from, next) => {
-        const isAuthorized = store.getters.checkAuth;
+        const isAuthorized = localStorage.getItem("username") !== null;
 
         if (isAuthorized) {
           next({ name: "facts" });
@@ -29,28 +35,28 @@ const router = new VueRouter({
     {
       path: "/facts",
       name: "facts",
-      component: () => import("../views/FactsView.vue"),
+      component: FactsView,
       meta: { requiresAuth: true },
     },
     {
       path: "/fact",
       name: "fact",
-      component: () => import("../views/FactView.vue"),
+      component: FactView,
       meta: { requiresAuth: true },
     },
     {
       path: "/about",
       name: "about",
-      component: () => import("../views/AboutView.vue"),
+      component: AboutView,
       meta: { requiresAuth: true },
     },
     {
       path: "/blog",
       name: "blog",
-      component: () => import("../views/BlogView.vue"),
+      component: BlogView,
       meta: { requiresAuth: true },
     },
-    { path: "*", redirect: "/login" },
+    { path: "*", redirect: { name: "login" } },
   ],
 
   scrollBehavior(to, from, savedPosition) {
@@ -63,17 +69,17 @@ const router = new VueRouter({
 });
 
 router.beforeEach((to, from, next) => {
-  const isAuthorized = store.getters.checkAuth;
+  const isAuthorized = localStorage.getItem("username") !== null;
 
   store.dispatch("setLoading", true);
 
   if (to.name === "login" && isAuthorized) {
-    next("/facts");
+    next({ name: "facts" });
   } else if (
     to.matched.some((record) => record.meta.requiresAuth) &&
     !isAuthorized
   ) {
-    next("/login");
+    next({ name: "login" });
   } else {
     next();
   }

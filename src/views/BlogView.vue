@@ -30,7 +30,7 @@
   </main>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .blog-page {
   &__title {
     grid-column: 1 / -1;
