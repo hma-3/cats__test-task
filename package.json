@@ -1,0 +1,50 @@
+{
+  "name": "cats__test-task",
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview --port 4173",
+    "format": "prettier . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore --write",
+    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore --fix",
+    "fix-style": "npm run format & npm run lint",
+    "prepare": "husky install"
+  },
+  "dependencies": {
+    "@vueuse/core": "^11.3.0",
+    "axios": "^1.7.9",
+    "lodash": "^4.17.21",
+    "nanoid": "^5.0.9",
+    "phosphor-vue": "^1.4.2",
+    "vue-router": "^3.5.4",
+    "vuex": "^3.6.2"
+  },
+  "devDependencies": {
+    "@rushstack/eslint-patch": "^1.1.0",
+    "@vitejs/plugin-legacy": "^2.0.0",
+    "@vitejs/plugin-vue2": "^1.1.2",
+    "@vue/eslint-config-prettier": "^7.0.0",
+    "eslint": "^8.5.0",
+    "eslint-plugin-vue": "^9.0.0",
+    "husky": "^9.1.7",
+    "prettier": "^2.5.1",
+    "sass": "^1.82.0",
+    "terser": "^5.14.2",
+    "vite": "^3.0.2"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.js": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.vue": [
+      "eslint --fix",
+      "prettier --write"
+    ]
+  }
+}
