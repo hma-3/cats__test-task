@@ -16,6 +16,7 @@
     <dropdown-menu
       class="filters__sort"
       :options="options"
+      :selected-option="selectedOption"
       @select="handleSelect"
     />
   </div>

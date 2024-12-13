@@ -27,25 +27,41 @@
 
               <ul class="nav__sublist nav__sublist--horizontal">
                 <li>
-                  <a href="https://www.instagram.com/" target="_blank">
+                  <a
+                    href="https://www.instagram.com/"
+                    target="_blank"
+                    aria-label="Instagram page"
+                  >
                     <ph-instagram-logo weight="fill" class="icon" />
                   </a>
                 </li>
 
                 <li>
-                  <a href="https://www.facebook.com/" target="_blank">
+                  <a
+                    href="https://www.facebook.com/"
+                    target="_blank"
+                    aria-label="Facebook page"
+                  >
                     <ph-facebook-logo weight="fill" class="icon" />
                   </a>
                 </li>
 
                 <li>
-                  <a href="https://www.youtube.com/" target="_blank">
+                  <a
+                    href="https://www.youtube.com/"
+                    target="_blank"
+                    aria-label="YouTube channel"
+                  >
                     <ph-youtube-logo weight="fill" class="icon" />
                   </a>
                 </li>
 
                 <li>
-                  <a href="https://x.com/" target="_blank">
+                  <a
+                    href="https://x.com/"
+                    target="_blank"
+                    aria-label="X (Twitter) page"
+                  >
                     <x-logo class="icon" />
                   </a>
                 </li>

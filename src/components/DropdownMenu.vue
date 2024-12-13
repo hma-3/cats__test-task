@@ -29,9 +29,15 @@ import { PhCaretDown, PhCaretUp, PhCheck } from "phosphor-vue";
 
 export default {
   components: { PhCaretDown, PhCaretUp, PhCheck },
+
   props: {
     options: {
       type: Array,
+      required: true,
+    },
+
+    selectedOption: {
+      type: String,
       required: true,
     },
   },
@@ -39,8 +45,19 @@ export default {
   data() {
     return {
       isOpen: false,
-      selected: this.options[0],
     };
+  },
+
+  computed: {
+    selected() {
+      return this.selectedOption || this.options[0];
+    },
+  },
+
+  watch: {
+    selectedOption(newOption) {
+      this.selected = newOption;
+    },
   },
 
   mounted() {

@@ -1,15 +1,13 @@
 <template>
-  <div class="loading-overlay" :class="{ 'loading-overlay--hidden': !loading }">
-    <div class="loader">
-      <div class="loader__dot"></div>
-      <div class="loader__dot"></div>
-      <div class="loader__dot"></div>
-      <div class="loader__dot"></div>
-      <div class="loader__dot"></div>
-      <div class="loader__dot"></div>
-      <div class="loader__dot"></div>
-      <div class="loader__dot"></div>
-    </div>
+  <div class="loader">
+    <div class="loader__dot"></div>
+    <div class="loader__dot"></div>
+    <div class="loader__dot"></div>
+    <div class="loader__dot"></div>
+    <div class="loader__dot"></div>
+    <div class="loader__dot"></div>
+    <div class="loader__dot"></div>
+    <div class="loader__dot"></div>
   </div>
 </template>
 
@@ -24,26 +22,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.loading-overlay {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 0;
-
-  background-color: var(--c-main-bg);
-  z-index: 1000;
-
-  &--hidden {
-    display: none;
-  }
-}
-
 .loader {
   --size: 110px;
   --speed: 2s;

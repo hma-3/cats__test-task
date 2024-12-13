@@ -6,7 +6,7 @@
     }"
     class="fact"
   >
-    <img :src="catFact.imgPath" alt="" class="fact__img" />
+    <img :src="catFact.imgPath" alt="Cat image" class="fact__img" />
 
     <div class="fact__container">
       <h2 v-if="catFact.length < 100" class="fact__content">

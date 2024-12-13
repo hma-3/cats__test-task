@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <transition name="fade" mode="out-in">
-      <app-loader />
+      <loader-full-page />
     </transition>
 
     <app-header />
@@ -15,13 +15,13 @@
 <script>
 import AppHeader from "./components/AppHeader.vue";
 import AppFooter from "./components/AppFooter.vue";
-import AppLoader from "./components/AppLoader.vue";
+import LoaderFullPage from "./components/LoaderFullPage.vue";
 
 export default {
   components: {
     AppHeader,
     AppFooter,
-    AppLoader,
+    LoaderFullPage,
   },
 
   computed: {

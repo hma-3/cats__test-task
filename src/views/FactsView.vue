@@ -3,7 +3,11 @@
     <div class="container">
       <h1 class="facts-page__title">Facts About Cats To Share With Kids!</h1>
 
-      <h2 v-if="errorMessage" class="facts-page__error">{{ errorMessage }}</h2>
+      <app-loader v-if="isLoading" class="facts-page__loader" />
+
+      <h2 v-else-if="errorMessage" class="facts-page__error">
+        {{ errorMessage }}
+      </h2>
 
       <template v-else>
         <FactsFilters
@@ -48,12 +52,14 @@ import { nanoid } from "nanoid";
 import debounce from "lodash/debounce";
 import * as factsApi from "../api/facts.js";
 
+import AppLoader from "../components/AppLoader.vue";
 import FactCard from "../components/FactCard.vue";
 import FactsFilters from "../components/FactsFilters.vue";
 import BaseButton from "../components/BaseButton.vue";
 
 export default {
   components: {
+    AppLoader,
     FactCard,
     FactsFilters,
     BaseButton,
@@ -77,6 +83,7 @@ export default {
         "Long ones only",
       ],
       errorMessage: "",
+      isLoading: true,
     };
   },
 
@@ -106,6 +113,8 @@ export default {
   },
 
   mounted: async function () {
+    this.isLoading = true;
+
     try {
       if (localStorage.getItem("facts") !== null) {
         this.facts = JSON.parse(localStorage.getItem("facts"));
@@ -117,6 +126,8 @@ export default {
       this.filteredFacts = this.facts;
     } catch (error) {
       this.errorMessage = "Something went wrong while loading facts";
+    } finally {
+      this.isLoading = false;
     }
   },
 
@@ -150,11 +161,11 @@ export default {
     getImagePath(fact) {
       for (let i = 9; i > 0; i--) {
         if ((fact.length + fact.fact.charCodeAt(0)) % i === 0) {
-          return `${import.meta.env.BASE_URL}/cats/0${i}.jpg`;
+          return `${import.meta.env.BASE_URL}/cats/0${i}.webp`;
         }
       }
 
-      return `${import.meta.env.BASE_URL}/cats/01.jpg`;
+      return `${import.meta.env.BASE_URL}/cats/01.webp`;
     },
 
     updateVisibleFacts() {
@@ -229,6 +240,12 @@ export default {
   &__title {
     grid-column: 1 / -1;
     text-align: center;
+  }
+
+  &__loader {
+    grid-column: 1 / -1;
+    margin-top: 16px;
+    margin-inline: auto;
   }
 
   &__filters {
