@@ -68,7 +68,7 @@ export default {
       }
 
       localStorage.setItem("username", this.username);
-      this.$router.push({ name: "facts" });
+      setTimeout(() => this.$router.push({ name: "facts" }), 0);
     },
   },
 };

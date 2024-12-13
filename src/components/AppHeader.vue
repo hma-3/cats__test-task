@@ -15,9 +15,30 @@ import AvatarButton from "./AvatarButton.vue";
 
 export default {
   components: { AvatarButton },
-  computed: {
-    isAuthorized() {
+  data() {
+    return {
+      isAuthorized: this.checkAuthorization(),
+    };
+  },
+  watch: {
+    $route() {
+      this.updateAuthorization();
+    },
+  },
+  created() {
+    this.updateAuthorization();
+
+    window.addEventListener("storage", this.updateAuthorization);
+  },
+  beforeDestroy() {
+    window.removeEventListener("storage", this.updateAuthorization);
+  },
+  methods: {
+    checkAuthorization() {
       return localStorage.getItem("username") !== null;
+    },
+    updateAuthorization() {
+      this.isAuthorized = this.checkAuthorization();
     },
   },
 };

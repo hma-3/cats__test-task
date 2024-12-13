@@ -22,15 +22,6 @@ const router = new VueRouter({
       path: "/login",
       name: "login",
       component: LoginView,
-      beforeEnter: (to, from, next) => {
-        const isAuthorized = localStorage.getItem("username") !== null;
-
-        if (isAuthorized) {
-          next({ name: "facts" });
-        } else {
-          next();
-        }
-      },
     },
     {
       path: "/facts",

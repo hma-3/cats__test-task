@@ -150,11 +150,11 @@ export default {
     getImagePath(fact) {
       for (let i = 9; i > 0; i--) {
         if ((fact.length + fact.fact.charCodeAt(0)) % i === 0) {
-          return `/cats/0${i}.jpg`;
+          return `${import.meta.env.BASE_URL}/cats/0${i}.jpg`;
         }
       }
 
-      return `/cats/01.jpg`;
+      return `${import.meta.env.BASE_URL}/cats/01.jpg`;
     },
 
     updateVisibleFacts() {
